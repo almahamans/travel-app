@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="travel planning app">
+<meta name="keywords" content="travel planning">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="charset=UTF-8">
+
+<link rel="stylesheet" href="../styles/layout.css">
+<link rel="stylesheet" href="../styles/colors-fonts.css">
+<link rel="stylesheet" href="../styles/form.css">
+<link rel="stylesheet" href="../styles/buttons.css">
+
+<title>Travel Planning</title>
+</head>
+<body>
+    <header>
+    <p class="header">Travel Planner</p>
+    </header>
+    <main>
+        <section class="entredData">
+            <span class="tripDesSpan">
+                <p> My trip to:</p>
+                    <form>
+                        <input type="text" autocomplete="off" name="entredDes" class="entredDes" placeholder="where you going to?">
+                    </form>               
+            </span>
+            <span class="tripDateSpan">
+                <p> Departing:</p>
+                <form>
+                    <input type="date" name="entredDate" class="entredDate">
+                </form>    
+            </span>
+            <span class="flightInfoSpan">
+                <p>Flight info:</p>
+                <form>
+                    <input type="text" name="entredFlight" autocomplete="off" class="entredFlight" placeholder="flight info">
+                </form>    
+            </span>
+            <span class="hotelInfoSpan">
+                <p>Hotel info:</p>
+                <form>
+                    <input type="text" name="entredHotel" autocomplete="off" class="entredHotel" placeholder="where you staying at?">
+                </form>    
+            </span>
+            <span class="tripEndDateSpan">
+                <p> End date:</p>
+                <form>
+                    <input type="date" name="entredDate" class="entredEndDate">
+                </form>    
+            </span>
+            <!-- <p class="addinginfo"><strong>*</strong>you can add <strong>one</strong> trip at a time but you can add <strong>multiple</strong> hotel info seperated by simicolon</p> -->
+        </section>
+        <!--  -->
+        <a href="https://almahamans.github.io/to-do-list/main.html" target="_blank" class="atodo"> <p>Use our To Do list app to orgnize your trip</p></a>
+        <!--  -->
+        <section class="data">
+
+        <section class="image">image here</section>
+
+        <section class="savedTrip">
+            <span class="tripDesSpan">
+                <p> My trip to</p>
+                <p class="Des2"></p>
+                <p class="destInfo1"></p>
+                <p class="destInfo2"></p>
+                <p class="destInfo3"></p>               
+            </span>
+            <span class="tripDateSpan">
+                <p> Departing</p>
+                <p class="edate"></p>  
+            </span>
+            <span class="flightInfoSpan">
+                <p>Flight info</p>
+                <p class="eFlight"></p>    
+            </span>
+            <span class="hotelInfoSpan">
+                <p>Hotel info</p>
+                <p class="eHotel"></p>   
+            </span>
+            <span class="tripEndDateSpan">
+                <p> End date</p>
+                <p class="eEndDate"></p> 
+            </span>
+            <div class="countdownDes">
+                <span class="countdown"></span>
+                <span class="Des"></span> 
+                <br> 
+                <span class="tripLength"></span> 
+            </div>
+            <div class="weather">
+                <p>Typical weather for then is:</p>
+                <span class="highW">h</span>
+                <span class="lowW">h</span>
+                <p class="statusW">h</p>
+            </div>
+        </section>
+    </section>
+    <section class="btns">
+        <button class="savingbtn">save trip</button>
+    </section>
+    </main>
+    <footer></footer>
+    <script src="../js/dom.js"></script>
+</body>
+</html>

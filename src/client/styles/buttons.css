@@ -1,0 +1,18 @@
+.btns{
+    margin: 1%;
+    /* justify-content: center;
+    align-items: center; */
+    text-align: center;
+}
+.savingbtn, .deletingbtn, .deleteInfo{
+padding: 7px;
+cursor: pointer;
+}
+.savingbtn{
+    background-color:tan;
+    border:none;
+}
+.deletingbtn, .deleteInfo{
+    background-color: inherit;
+    border:2px solid tan;
+}
