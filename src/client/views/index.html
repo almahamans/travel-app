@@ -6,49 +6,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="charset=UTF-8">
 
-<link rel="stylesheet" href="../styles/layout.css">
-<link rel="stylesheet" href="../styles/colors-fonts.css">
-<link rel="stylesheet" href="../styles/form.css">
-<link rel="stylesheet" href="../styles/buttons.css">
-
-<title>Travel Planning</title>
+<title>Travel App</title>
 </head>
 <body>
     <header>
     <p class="header">Travel Planner</p>
     </header>
     <main>
-        <section class="entredData">
-            <span class="tripDesSpan">
-                <p> My trip to:</p>
-                    <form>
-                        <input type="text" autocomplete="off" name="entredDes" class="entredDes" placeholder="where you going to?">
-                    </form>               
-            </span>
+        <section class="entredData">           
+            <form onsubmit="Client.handleSubmit(event)">
+                <span class="tripDesSpan">
+                    <label for="entredDes"> My trip to:</label>
+                        <input type="text" autocomplete="off" name="entredDes" class="entredDes" placeholder="where you going to?" required>             
+                </span>
             <span class="tripDateSpan">
-                <p> Departing:</p>
-                <form>
-                    <input type="date" name="entredDate" class="entredDate">
-                </form>    
+                <label for="entredDate"> Departing:</label>
+                    <input type="date" name="entredDate" class="entredDate" required>   
             </span>
             <span class="flightInfoSpan">
-                <p>Flight info:</p>
-                <form>
-                    <input type="text" name="entredFlight" autocomplete="off" class="entredFlight" placeholder="flight info">
-                </form>    
+                <label for="entredFlight">Flight info:</label>
+                    <input type="text" name="entredFlight" autocomplete="off" class="entredFlight" placeholder="flight info">   
             </span>
             <span class="hotelInfoSpan">
-                <p>Hotel info:</p>
-                <form>
-                    <input type="text" name="entredHotel" autocomplete="off" class="entredHotel" placeholder="where you staying at?">
-                </form>    
+                <label for="entredHotel">Hotel info:</label>
+                    <input type="text" name="entredHotel" autocomplete="off" class="entredHotel" placeholder="where you staying at?">    
             </span>
             <span class="tripEndDateSpan">
-                <p> End date:</p>
-                <form>
+                <label for="entredDate"> End date:</label>
                     <input type="date" name="entredDate" class="entredEndDate">
-                </form>    
             </span>
+        </form>
             <!-- <p class="addinginfo"><strong>*</strong>you can add <strong>one</strong> trip at a time but you can add <strong>multiple</strong> hotel info seperated by simicolon</p> -->
         </section>
         <!--  -->
@@ -90,17 +77,26 @@
             </div>
             <div class="weather">
                 <p>Typical weather for then is:</p>
-                <span class="highW">h</span>
-                <span class="lowW">h</span>
-                <p class="statusW">h</p>
+                <span class="highW"></span>
+                <span class="lowW"></span>
+                <p class="statusW"></p>
             </div>
         </section>
     </section>
-    <section class="btns">
+    <!-- <section class="btns">
         <button class="savingbtn">save trip</button>
+    </section> -->
+    <section class="data">
+    <section id="savedTrips"></section>
     </section>
     </main>
     <footer></footer>
-    <script src="../js/dom.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
 </body>
 </html>

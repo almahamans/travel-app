@@ -1,5 +1,5 @@
 const fetch = require('node-fetch')
-const baseUrl = 'http://api.geonames.org/search?'
+const baseUrl = 'http://api.geonames.org/searchJSON?'
 const gApiKey = process.env.ggeo_userName
 
 //get 
