@@ -14,7 +14,7 @@
     </header>
     <main>
         <section class="entredData">           
-            <form onsubmit="Client.handleSubmit(event)">
+            <form onsubmit="return Client.handleSubmit(event)">
                 <span class="tripDesSpan">
                     <label for="entredDes"> My trip to:</label>
                         <input type="text" autocomplete="off" name="entredDes" class="entredDes" placeholder="where you going to?" required>             
@@ -36,14 +36,14 @@
                     <input type="date" name="entredDate" class="entredEndDate">
             </span>
         </form>
-            <!-- <p class="addinginfo"><strong>*</strong>you can add <strong>one</strong> trip at a time but you can add <strong>multiple</strong> hotel info seperated by simicolon</p> -->
+        
         </section>
         <!--  -->
-        <a href="https://almahamans.github.io/to-do-list/main.html" target="_blank" class="atodo"> <p>Use our To Do list app to orgnize your trip</p></a>
+        <a href="https://almahamans.github.io/to-do-list/main.html" target="_blank" class="atodo"> <p>Use our To Do list app to organize your trip</p></a>
         <!--  -->
         <section class="data">
 
-        <section class="image">image here</section>
+        <!-- <section class="image">image here</section>
 
         <section class="savedTrip">
             <span class="tripDesSpan">
@@ -82,10 +82,13 @@
                 <p class="statusW"></p>
             </div>
         </section>
-    </section>
+    </section> -->
     <!-- <section class="btns">
         <button class="savingbtn">save trip</button>
     </section> -->
+    <section class="results">
+        <section id="tripInfo"></section>
+    </section>
     <section class="data">
     <section id="savedTrips"></section>
     </section>

@@ -1,48 +1,35 @@
-#cards {
-    margin: auto;
-    width: fit-content;
-    height: fit-content;
-  }
-  #card {
+  .cards {
     width: fit-content;
     height: fit-content;
     border-radius: 1rem;
     margin: 2rem 0rem;
-    padding: 2rem;
+    padding: 1rem;
     box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
   }
   
-  .img-flage,
-  .img-pixabay {
+  .card__image {
     box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
     border-radius: 1rem;
     opacity: 80%;
-  }
-  .img-pixabay {
-    width: 65vw;
+     width: 65vw;
     height: auto;
   }
   
-  .img-pixabay-div {
+  .card__body {
     width: fit-content;
     border-radius: 1rem;
     margin: 25px;
   }
   
-  .trip-data-div {
+  .card__weather--info {
     margin: 25px;
     width: 65vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
-  .img-flage {
-    width: 20vw;
-    height: auto;
-    border-radius: 1rem;
-    margin: auto;
-  }
-  .trip-data-text {
+ 
+  .card__text {
     width: 42vw;
     box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
     border-radius: 1rem;
@@ -50,11 +37,10 @@
     padding: 25px;
   }
   
-  .trip-data-text > p,
-  .trip-data-text > h3 {
-    font-family: 'Poppins', sans-serif;
+  .card__text > h2,
+  .card__text > h4 {
     font-weight: 500;
-    color: #444;
+    color: rgb(0, 0, 0);
     line-height: 1.6;
   }
   
@@ -90,9 +76,6 @@
   @media (max-width: 450px) {
     .trip-data-div {
       flex-direction: column-reverse;
-    }
-    .img-flage {
-      margin-bottom: 20px;
     }
     footer {
       font-size: 20px;

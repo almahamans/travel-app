@@ -71,6 +71,6 @@ module.exports = {
             verbose: true,
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false,
-        }),
+        })
     ],
 };

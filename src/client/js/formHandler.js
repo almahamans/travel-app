@@ -12,7 +12,7 @@ const handleSubmit = async (event) => {
 
     if (!isFormValid) return;
 
-    const tripInfo = document.querySelector('.data');
+    const tripInfo = document.querySelector('#tripInfo');
 
     let geoData;
     let weatherData;
@@ -93,7 +93,7 @@ const saveTrip = async () => {
         if (!destinationImage) destinationImage = 'images/placeholder.jpg';
 
         const cardElement = document.createElement('section');
-        cardElement.classList.add('cards', 'card--column');
+        cardElement.classList.add('cards');
 
         cardElement.innerHTML = Client.renderHTMLTemplate(
             destinationImage,
@@ -111,8 +111,7 @@ const saveTrip = async () => {
 
 const removeTrip = async (url = '/removeSavedTrip', data = {}) => {
     const parentCardElelement = event.target.closest('.cards');
-    // Could I update this to take advantage of event bubbling? I could convert the trip HTML to a list of cards, perhaps more semantic as well...
-    const tripId = event.target.dataset.tripId;
+     const tripId = event.target.dataset.tripId;
     data = { id: tripId };
     const response = await fetch(url, {
         method: 'POST',

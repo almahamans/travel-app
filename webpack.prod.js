@@ -68,5 +68,6 @@ module.exports = {
         //new Dotenv(),
         new WorkboxPlugin.GenerateSW(),
         //new MiniCssExtractPlugin({ filename: '[name].css' }),
+        new MiniCssExtractPlugin()
     ],
 };

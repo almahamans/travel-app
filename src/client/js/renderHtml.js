@@ -5,10 +5,11 @@ export function renderHTMLTemplate(
     daysToGo,
     daysLong,
     weatherData,
-    savedTripId,
+    savedTripId, 
     save = true
 ){
     return `
+    <section class='cards'>
         <section class="card__image">
             <img src="${destinationImage}">
         </section>
@@ -23,9 +24,7 @@ export function renderHTMLTemplate(
                 <p>Your trip is ${daysLong} days long</p>
             </div>
             <div class="card__weather">
-                <div class="card__weather--icon">
-                    <img src="icons/${weatherData[0].weather.icon}.png" alt="">
-                </div>
+
                 <div class="card__weather--info">
                     <p class="temp">
                         ${weatherData[0].temp}<sup>&#8451;</sup>
@@ -49,6 +48,7 @@ export function renderHTMLTemplate(
                     }
                     ${save ? 'Save' : 'Remove'} Trip
             </button>
+        </section>
         </section>
     `
 }
