@@ -1,6 +1,6 @@
 # Travel App
 ## Description 
-An app to obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs. The app suitable for all screen's size.
+An app to obtains a desired trip location, start date and end date from the user then displays weather and an image of the location using information obtained from external APIs. The app suitable for all screen's size.
 ## Built with 
 - html5
 - sacc > to make style and make the app responsive.
