@@ -1,45 +1,28 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebPackPlugin = require("html-webpack-plugin")
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
+    mode: 'development',
+    devtool: 'source-map',
+    stats: 'verbose',
     output: {
         libraryTarget: 'var',
-        library: 'Client',
+        library: 'Client'
     },
-    mode: 'development',
-    // https://webpack.js.org/configuration/dev-server/#devserverproxy
-    devServer: {
-        proxy: {
-            '/geonames-locations': 'http://localhost:3000',
-            '/weatherbit-forecast': 'http://localhost:3000',
-            '/pixabay-images': 'http://localhost:3000',
-            '/saveTrip': 'http://localhost:3000',
-            '/getSaveTrip': 'http://localhost:3000',
-            '/removeSavedTrip': 'http://localhost:3000',
-            '/searchTrip': 'http://localhost:3000',
-            '/getSearchTrip': 'http://localhost:3000',
-        },
-    },
-    devtool: 'source-map',
     module: {
         rules: [
             {
-                test: '/.js$/',
+                test: '/\.js$/',
                 exclude: /node_modules/,
-                loader: 'babel-loader',
-            },
-            {
+                loader: "babel-loader"
+            }, {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
-            },
-            {
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }, {
                 test: /\.(png|svg|jpe?g|gif)$/i,
                 exclude: ['/node_modules/', require.resolve('./src/client/index.js')], //Refer to SO page that discusses file-loader/HTML WP plugin conflicts
                 use: {
@@ -51,26 +34,22 @@ module.exports = {
                     }
                 }
             }
-        ],
+        ]
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: './src/client/views/index.html',
-            filename: './index.html',
+            template: "./src/client/views/index.html",
+            filename: "./index.html",
         }),
-        new WriteFilePlugin(),
-        // new CopyPlugin({
-        //     patterns: [
-        //         { from: 'src/client/icons', to: 'icons' },
-        //         { from: 'src/client/images', to: 'images' },
-        //     ],
-        // }),
-        //new Dotenv(),
         new CleanWebpackPlugin({
-            dry: false,
+            // Simulate the removal of files
+            dry: true,
+            // Write Logs to Console
             verbose: true,
+            // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
-            protectWebpackAssets: false,
-        })
-    ],
-};
+            protectWebpackAssets: false
+        }),
+        new WorkboxPlugin.GenerateSW()
+    ]
+}

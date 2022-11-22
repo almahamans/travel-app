@@ -4,15 +4,21 @@
     align-items: center; */
     text-align: center;
 }
-.savingbtn, .deletingbtn, .deleteInfo{
+.savingbtn, .deletingbtn{
 padding: 7px;
 cursor: pointer;
 }
 .savingbtn{
     background-color:tan;
     border:none;
+    border-radius: 10px;
+    font-size: medium;
 }
-.deletingbtn, .deleteInfo{
+.deletingbtn{
     background-color: inherit;
     border:2px solid tan;
+    margin: auto;
+}
+.deletingbtn:hover{
+    color:brown;
 }

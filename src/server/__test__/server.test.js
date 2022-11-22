@@ -1,15 +1,11 @@
-const request = require('supertest');
-const app = require('../server/server');
+const app = require('../server');
+const supertest = require('supertest');
+const request = supertest(app);
 
-const geo_key = process.env.geo_key;
 
-describe('Post Endpoints', () => {
-    test('get geo name locations', async () => {
-        const res = await request(app)
-            .post('/geo-name-locations')
-            .send({
-                BASE_URL: `http://api.geonames.org/searchJSON?formatted=true&q=manchester&username=${geo_key}`,
-            });
-        expect(res.statusCode).toEqual(200);
-    });
-});
+describe('Endpoint test', () => {
+  test('/test', async () => {
+    const response = await request.get('/test');
+    expect(response.status).toBe(200)
+  })
+})
