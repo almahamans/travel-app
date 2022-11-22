@@ -18,11 +18,11 @@ An app to obtains a desired trip location, start date and end date from the user
 
 - To builds and generates dist folder for production:
 
-`npm build-prod`
+`npm run build-prod`
 
 - To builds and runs the webpack dev server for development:
 
-`npm build-dev`
+`npm run build-dev`
 
 - To run express serevr (port 3005):
 
@@ -31,3 +31,6 @@ An app to obtains a desired trip location, start date and end date from the user
 - To test:
 
 `npm test`
+
+### Future work
+want to add weather icons, add flight and hotel detailes also allow user to print the page.
