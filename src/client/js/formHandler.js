@@ -7,10 +7,10 @@ if (typeof document !== "undefined") {
 async function handleSubmit(event) {
     event.preventDefault()
     if (cityInput.value) {
-        Client.appfunction(event)
+        Client.appfunction()
     } else {
-        alert(`please the city field cannot be empty`)
-        return;
+        alert(`city field cannot be empty`)
+        return
     }
 }
 

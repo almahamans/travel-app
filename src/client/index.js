@@ -3,21 +3,15 @@ import { handleSubmit } from './js/formHandler'
 import { appfunction, getTripInfo } from './js/app'
 import { daysLong, countdownDays } from './js/date'
 
-
 import './styles/buttons.scss'
 import './styles/layout.scss'
 import './styles/form.scss'
 import './styles/colors-fonts.scss'
 import './styles/cards.scss'
 
-let serverLink = 'http://localhost:3005'
-
-const startDate = document.querySelector('#startDate');
-const endDate = document.querySelector('#endDate');
-const cityInput = document.getElementById('cityInput');
 let tripsList = []
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
  tripsList = []
 })
 

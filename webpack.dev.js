@@ -16,23 +16,18 @@ module.exports = {
     module: {
         rules: [
             {
-                test: '/\.js$/',
+                test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
             }, {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             }, {
-                test: /\.(png|svg|jpe?g|gif)$/i,
-                exclude: ['/node_modules/', require.resolve('./src/client/index.js')], //Refer to SO page that discusses file-loader/HTML WP plugin conflicts
-                use: {
+                    test: /\.(png|jpe?g|gif)$/i,
                     loader: 'file-loader',
                     options: {
-                        name: '[name].[ext]',
-                        outputPath: 'imgs',
-                        publicPath: 'imgs'
-                    }
-                }
+                      name: '[path][name].[ext]',
+                    }         
             }
         ]
     },
@@ -42,14 +37,11 @@ module.exports = {
             filename: "./index.html",
         }),
         new CleanWebpackPlugin({
-            // Simulate the removal of files
-            dry: true,
-            // Write Logs to Console
-            verbose: true,
-            // Automatically remove all unused webpack assets on rebuild
+            dry: true, 
+            verbose: true, 
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
-        new WorkboxPlugin.GenerateSW()
+        // new WorkboxPlugin.GenerateSW()
     ]
 }

@@ -15,45 +15,35 @@ module.exports = {
         library: 'Client'
     },
     optimization: {
-        minimizer: [new OptimizeCssAssetsWebpackPlugin(), new TerserPlugin()],
+        minimizer: [
+            new OptimizeCssAssetsWebpackPlugin({}),
+            new TerserPlugin({})
+            ]
     },
     module: {
         rules: [
             {
-                test: '/\.js$/',
+                test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
             }, {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
-            }, {
-                test: /\.(png|svg|jpe?g|gif)$/i,
-                exclude: ['/node_modules/', require.resolve('./src/client/index.js')], //Refer to SO page that discusses file-loader/HTML WP plugin conflicts
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'imgs',
-                        publicPath: 'imgs'
-                    }
-                }
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             }
         ]
     },
-    plugins: [
+        plugins: [
         new HtmlWebPackPlugin({
             template: "./src/client/views/index.html",
             filename: "./index.html",
         }),
         new CleanWebpackPlugin({
-            // Simulate the removal of files
             dry: true,
-            // Write Logs to Console
             verbose: true,
-            // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
-        new WorkboxPlugin.GenerateSW()
+        new WorkboxPlugin.GenerateSW(),
+        new MiniCssExtractPlugin({ filename: "[name].css" }),
     ]
 }

@@ -4,6 +4,7 @@ if (typeof document !== "undefined") {
   city = document.querySelector('#cityInput');
   section = document.querySelector('#cards');
 }
+
 let geonames = '', weatherbit = '', img = '', i = 0
 
 export function generateTripCard(card) {

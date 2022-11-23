@@ -3,11 +3,10 @@ let tripInfo, cityInput ;
 if (typeof document !== "undefined") {
   cityInput = document.querySelector('#cityInput');
 }
-export async function appfunction(event){
+export async function appfunction(){
   tripInfo = { startDate: '', endDate: '', daysLong: '', countdownDays: '', city: '', geonames: '', pixabay: '', weatherbit: ''}
   geonames()
-
-};
+}
 
 export async function geonames() {
   try {

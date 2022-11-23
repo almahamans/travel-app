@@ -4,6 +4,7 @@ const fetch = require('fetch-node');
 
 const express = require('express')
 const app = express()
+
 app.use(express.static('dist'))
 
 app.listen(3005, ()=>{
@@ -30,8 +31,6 @@ app.get('/', function (req, res) {
 app.get('/test', async (req, res) => {
     res.send('pass')
 })
-
-
 
 let tripInfo = {}
 
