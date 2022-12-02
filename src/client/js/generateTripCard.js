@@ -1,48 +1,52 @@
-//  render trip's details 
-let city, section;
-if (typeof document !== "undefined") {
-  city = document.querySelector('#cityInput');
-  section = document.querySelector('#cards');
-}
+const renderHTMLTemplate = (
+  destinationImage,
+  destination,
+  daysToGo,
+  weatherData,
+  savedTripId,
+  save = true
+) => {
+  return `
+      <div class="card__image">
+          <img src="${destinationImage}">
+      </div>
+      <div class="card__body">
+          <div class="card__text">
+              ${
+                  save
+                      ? '<h2>' + destination + '</h2>'
+                      : '<h4>' + destination + '</h4>'
+              }
+              <p>Your trip is in ${daysToGo} days time</p>
+          </div>
+          <div class="card__weather">
+             
+              <div class="card__weather--info">
+                  <p class="temp">
+                      ${weatherData[0].temp}<sup>&#8451;</sup>
+                  </p>
+                  <p>${weatherData[0].weather.description}</p>
+              </div>
+          </div>
+      </div>
+      <div class="card__footer">
+          <button 
+              class="btn btn__save" 
+              type="button" 
+              data-trip-id="${savedTripId}" 
+              onclick="return ${
+                  save ? 'Client.saveTrip()' : 'Client.removeTrip()'
+              }">
+                  ${
+                      save
+                          ? '<i class="far fa-heart"></i>'
+                          : '<i class="far fa-trash-alt"></i>'
+                  }
+                  ${save ? 'Save' : 'Remove'} Trip
+          </button>
+      </div>
+  `;
+};
 
-let geonames = '', weatherbit = '', img = '', i = 0
 
-export function generateTripCard(card) {
-
-  geonames = card.geonames
-  img = card.pixabay.hits[randomInt(card.pixabay.hits.length)]
-  weatherbit = card.weatherbit
-  //restcountries = card.restcountries[0]
-
-  section.innerHTML = ` 
-  <section id="card" class="data" data-id="1">
-  <div id="card-head">
-  <p id="results" class="cityName">${geonames.name}</p>
-  <button class="remove btn deletingbtn">DELETE</button>
-  </div>
-  
-  <div class="trip-data-text">
-  <h3>Here are some details for your trip to:${geonames.name.toUpperCase()}, ${geonames.countryName.toUpperCase()}</h3>
-  <p><strong>${card.countdownDays}</strong> days away to fly to <strong>${geonames.name}</strong> for <strong>${card.daysLong}</strong> days!</p>
-  <p>Your trip starts at: <strong>${card.startDate}</strong> and ends at: <strong>${card.endDate}</strong>.</p>
-  <p>Temperature for today: <strong>${weatherbit.temp}</strong>, max:<strong>${weatherbit.max_temp}</strong> and min: <strong>${weatherbit.low_temp}</strong></p>
-  </div>
-
-  <div>
-  <a href="${img.pageURL}">
-  <img src="${img.webformatURL}" alt="${img.tags}" class="img-pixabay">
-  </a>
-  </div>
-  </section>` + section.innerHTML;
-
-
-  city.value = ''
-  Client.btn.value = 'search'
-  Client.btn.disabled = false
-  i++
-}
-
-
-export function randomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
+export {renderHTMLTemplate}

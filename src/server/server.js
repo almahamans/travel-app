@@ -23,81 +23,64 @@ const cors = require('cors');
 app.use(cors());
 
 
-app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
-})
+homePage = (req, res) => {
+    res.sendFile('./dist/index.html');
+};
 
+geoNameLocations = async (req, res) => {
+    const response = await axios.get(
+        `${req.body.BASE_URL}&username=${process.env.geo_key}`
+    );
+    res.send(response.data);
+};
 
-app.get('/test', async (req, res) => {
-    res.send('pass')
-})
+weatherBitForecast = async (req, res) => {
+    const response = await axios.get(
+        `${req.body.BASE_URL}&key=${process.env.weather_key}`
+    );
+    res.send(response.data);
+};
 
-let tripInfo = {}
+pixabayImages = async (req, res) => {
+    const response = await axios.get(
+        `${req.body.BASE_URL}&key=${process.env.pixary_key}`
+    );
+    res.send(response.data);
+};
 
-app.post('/addTrip', async (req, res) => {
-    tripInfo = req.body
-    console.log(tripInfo)
-    res.json(tripInfo)
-})
+app.get('/', homePage);
+app.post('/geonames-locations', geoNameLocations);
+app.post('/weatherbit-forecast', weatherBitForecast);
+app.post('/pixabay-images', pixabayImages);
 
+app.post('/save-search-result', (req, res) => {
+    projectData = req.body;
+    res.send(projectData);
+});
 
-app.get('/getTripInfo', function (req, res) {
-    res.send(tripInfo)
-})
+app.get('/get-search-result', (req, res) => {
+    res.json(projectData);
+});
 
+app.post('/save-trip', (req, res) => {
+    const trip = { ...req.body };
+    savedTrips.push(trip);
+    res.send(trip);
+});
 
-//geonames
-app.get('/geonames', async (req, res) => {
-    try {
-        const response = await fetch(`http://api.geonames.org/searchJSON?q=${req.query.city}&maxRows=1&username=${process.env.geo_key}`, {
-            method: 'POST',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
+app.get('/get-saved-trips', (req, res) => {
+    res.json(savedTrips);
+});
 
-        const newData = await response.json();
-        res.json(newData)
-    } catch (error) {
-        console.log("geonames route error", error);
-    }
-})
+app.post('/remove-saved-trip', (req, res) => {
+    const tripId = req.body.id;
 
+    savedTrips = savedTrips.filter((savedTrip) => {
+        return savedTrip.id != tripId;
+    });
 
-
-//weatherbit
-app.get('/weatherbit', async (req, res) => {
-
-    try {
-        const response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${req.query.lat}&lon=${req.query.lon}&days=${req.query.days + 1 }&key=${process.env.weather_key}`, {
-            method: 'POST',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-
-        const newData = await response.json();
-        res.json(newData.data[req.query.days])
-    } catch (error) {
-        console.log("weatherbit route error", error);
-    }
-})
-
-
-// pixabay
-app.get('/pixabay', async (req, res) => {
-    try {
-        const response = await axios.get(`https://pixabay.com/api/?q=${req.query.place}&key=${process.env.pixary_key}&image_type=photo`);
-
-        res.send(response.data)
-    } catch (error) {
-
-        res.send('pixabay route error')
-    }
-
-})
+    res.json(savedTrips);
+});
 
 
 
