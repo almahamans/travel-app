@@ -33,4 +33,4 @@ An app to obtains a desired trip location, start date and end date from the user
 `npm test`
 
 ### Future work
-want to add weather icons, add flight and hotel detailes also allow user to print the page.
+want to add weather icons, add flight and hotel detailes, break down the code into smaller modules also allow user to print the page.
