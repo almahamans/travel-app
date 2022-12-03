@@ -1,164 +1,156 @@
-const savedTripsSection = document.getElementById('cards');
+import {countdownDays, daysLong} from './date'
 
-// Render saved trips
-document.addEventListener('DOMContentLoaded', () => {
-    Client.renderSavedTrips();
-});
+const details = {}
 
-const handleSubmit = async (event) => {
-    event.preventDefault();
+const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
+const username = 'meem';
+const weatherforecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?lat=';
+const weatherhistoryURL = 'https://api.weatherbit.io/v2.0/history/daily?lat=';
+const weatherbitAPI = '43e5b5e4fc4d44418a78aaeaf0f0ac59';
+const pixabayURL = 'https://pixabay.com/api/?key=';
+const pixabayAPI = '31434193-491972de18a02049fd2bb2d83';
 
-    const destination = document.getElementById('cityInput');
-    const departureDate = document.getElementById('startDate');
+const trip_section = document.querySelector('#cards');
+const plan_trip = document.querySelector('.entredData');
 
-    const formElements = [destination, departureDate];
-    const isFormValid = Client.validateUserInput(formElements);
-    if (!isFormValid) return;
 
-    const tripInfo = document.getElementById('tripInfo');
+function handleSubmit(e) {
+    e.preventDefault();
 
-    let geonameData;
-    let weatherData;
-    let pixabayData;
+    details['dest'] = document.querySelector('#cityInput').value
+    const std = document.querySelector('#startDate').value
+    details['startDate'] = std
+    const end = document.querySelector('#endDate').value
+    details['endDate'] = end
+    details['daystogo'] = countdownDays(std)
+    details['daysLong'] = daysLong(std, end)
 
     try {
-        geonameData = await Client.geonames(destination.value);
-         if (geonameData.geonames.length === 0) return;
+        // Fetching geo stats of destination place.
+        getGeoDetails(details['dest'])
+            .then((toInfo) => {
 
-        const lat = geonameData.geonames[0].lat;
-        const lon = geonameData.geonames[0].lng;
+                const lat = toInfo.geonames[0].lat;
+                const lng = toInfo.geonames[0].lng;
 
-        const daysToGo = Client.countdownDays(departureDate.value);
+                //Getting Weather details
+                return getWeatherData(lat, lng, details['startDate']);
+            })
+            .then((weatherData) => {
+                //Store weather details
+                details['temperature'] = weatherData['data'][0]['temp'];
+                details['weather_condition'] = weatherData['data']['0']['weather']['description'];
 
-        weatherData = await Client.weatherbit(daysToGo, lat, lon);
-
-        pixabayData = await Client.pixabay(
-            'photo',
-            'travel',
-            true,
-            'popular',
-            'horizontal',
-            destination.value
-        );
-
-        const projectData = {
-            id: geonameData.geonames[0].geonameId,
-            departureDate: departureDate.value,
-            destination: destination.value,
-            leavingDate: departureDate.value,
-            geonameData: { ...geonameData.geonames[0] },
-            weatherData: [...weatherData.data],
-            pixabayData: { ...pixabayData.hits[0] },
-        };
-
-        postProjectdata('/save-search-result', projectData).then(
-            async (searchResult) => {
-                let destinationImage = './images/trip-holder.jpg';
-
-                if (searchResult.pixabayData.webformatURL) {
-                    destinationImage = searchResult.pixabayData.webformatURL;
+                //Calling Pixabay API to fetch the img of the city
+                return getImage(details['dest']);
+            })
+            .then((imageDetails) => {
+                if (imageDetails['hits'].length > 0) {
+                    details['cityImage'] = imageDetails['hits'][0]['webformatURL'];
                 }
-            const innerCard = Client.renderHTMLTemplate(
-                    searchResult.pixabayData.webformatURL,
-                    searchResult.destination,
-                    daysToGo,
-                    searchResult.weatherData,
-                    searchResult.id
-                );
-
-                tripInfo.innerHTML = `
-                    <div class="data">
-                        ${innerCard}
-                    </div>
-                `;
-            }
-        );
-    } catch (error) {
-        console.error(error);
+                //Send data to server to store details
+                return postData(details);
+            })
+            .then((data) => {
+                updateUI(data);
+            })
+    } catch (e) {
+        console.log('error', e);
     }
-};
+}
 
-const saveTrip = async () => {
-    let savedTrips = await getSavedTrips();
-    const searchResult = await getSearchResult();
+// Function to get Geo stats
+async function getGeoDetails(city) {
+    const response = await fetch(`${geoNamesURL}${city}&maxRows=10&username=${username}`);
+    try {
+        return await response.json();
+    } catch (e) {
+        console.log('error', e);
+    }
+}
 
-    if (isTripSaved(searchResult.id, savedTrips)) {
-        return;
+
+//Function to get weather data
+async function getWeatherData(lat, lng, date) {
+
+    // Getting the timestamp for the current date and traveling date for upcoming processing.
+    const timestamp_trip_date = Math.floor(new Date(date).getTime() / 1000);
+    const todayDate = new Date();
+    const timestamp_today = Math.floor(new Date(todayDate.getFullYear() + '-' + todayDate.getMonth() + '-' + todayDate.getDate()).getTime() / 1000);
+
+    let response;
+    // Check if the date is gone and call the appropriate endpoint.
+    if (timestamp_trip_date < timestamp_today) {
+        let next_date = new Date(date);
+        next_date.setDate(next_date.getDate() + 1);
+        response = await fetch(`${weatherhistoryURL}${lat}&lon=${lng}&start_date=${date}&end_date=${next_date}&key=${weatherbitAPI}`)
+    } else {
+        response = await fetch(`${weatherforecastURL}${lat}&lon=${lng}&key=${weatherbitAPI}`);
     }
 
-    postProjectdata('/save-trip', searchResult).then(async (savedTrip) => {
-        savedTrips = await getSavedTrips();
-        localStorage.setItem('savedTrips', JSON.stringify(savedTrips));
-        const daysToGo = Client.countdownDays(savedTrip.departureDate);
-        let destinationImage = savedTrip.pixabayData.webformatURL;
-        if (!destinationImage) destinationImage = './images/trip-holder.jpg';
+    try {
+        return await response.json();
+    } catch (e) {
+        console.log('error', e)
+    }
+}
 
-        const cardElement = document.createElement('div');
-        cardElement.classList.add('data');
+async function getImage(toCity) {
+    const response = await fetch(`${pixabayURL}${pixabayAPI}&q=${toCity} city&image_type=photo`);
+    try {
+        return await response.json();
+    } catch (e) {
+        console.log('error', e);
+    }
+}
 
-        cardElement.innerHTML = Client.renderHTMLTemplate(
-            destinationImage,
-            savedTrip.destination,
-            daysToGo,
-            savedTrip.weatherData,
-            savedTrip.id,
-            false
-        );
-
-        savedTripsSection.prepend(cardElement);
-    });
-};
-
-const removeTrip = async (url = '/remove-saved-trip', data = {}) => {
-    const parentCardElelement = event.target.closest('.card');
-    const tripId = event.target.dataset.tripId;
-    data = { id: tripId };
-    const response = await fetch(url, {
-        method: 'POST',
+async function postData(details) {
+    const response = await fetch('http://localhost:3005/postData', {
+        method: "POST",
+        credentials: 'same-origin',
         headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(details)
     });
-    const savedTrips = await response.json();
 
-    localStorage.setItem('savedTrips', JSON.stringify(savedTrips));
-
-    parentCardElelement.remove();
-};
-
-const getSearchResult = async () => {
-    const response = await fetch('/get-search-result');
-    const searchResult = await response.json();
-    return searchResult;
-};
-
-const getSavedTrips = async () => {
-    const response = await fetch('/get-saved-trips');
-    const savedTrips = await response.json();
-    return savedTrips;
-};
-
-const postProjectdata = async (url = '', data = {}) => {
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
-    return response.json();
-};
-
-const isTripSaved = (tripToSaveID, savedTrips) => {
-    if (savedTrips.length !== 0) {
-        for (let trip of savedTrips) {
-            if (trip.geonameData.geonameId === tripToSaveID) {
-                return true;
-            }
-        }
-        return false;
+    try {
+        return await response.json();
+    } catch (e) {
+        console.log('error', e);
     }
-};
+}
 
-export { handleSubmit, saveTrip, removeTrip };
+//Updating the UI
+function updateUI(data) {
+    trip_section.classList.remove('hide');
+    trip_section.scrollIntoView({behavior: "smooth"});
+
+    let destination_details = document.getElementById("dest");
+    let departure_date = document.getElementById("sd");
+    let end_date = document.getElementById("ed");
+    let number_of_days = document.getElementById('dg');
+    let daysLong = document.getElementById('dl');
+    let temperature = document.getElementById('temp');
+    let photo = document.getElementById('img');
+    let weather = document.getElementById('weather');
+
+    destination_details.innerHTML = data.dest;
+    departure_date.innerHTML = data.startDate;
+    end_date.innerHTML = data.endDate
+    daysLong.innerHTML = data.daysLong
+    number_of_days.innerHTML = data.daystogo;
+
+    temperature.innerHTML = data.temperature + '&#8451;';
+    if (data.cityImage !== undefined) {
+        photo.setAttribute('src', data.cityImage);
+    }
+
+    weather.innerHTML = data.weather_condition;
+}
+
+export {
+    plan_trip,
+    handleSubmit,
+    trip_section
+}

@@ -15,7 +15,7 @@
     </header>
     <main>
         <section class="entredData">           
-            <form onsubmit="return Client.handleSubmit(event)">
+            <form id="form">
                 <span class="tripDesSpan">
                     <label for="entredDes">My&nbsptrip&nbspto:</label>
                         <input type="text" autocomplete="off" name="entredDes" id="cityInput" class="entredDes" placeholder="where you going to?" required>             
@@ -34,8 +34,8 @@
                     <input type="text" name="entredHotel" autocomplete="off" class="entredHotel" placeholder="where you staying at?">    
             </span> -->
             <span class="tripEndDateSpan">
-                <label for="entredDate"> End date:</label>
-                    <input type="date" name="entredDate" id="endDate" class="entredEndDate">
+                <label for="entredEndDate"> End date:</label>
+                    <input type="date" name="entredEndDate" id="endDate" class="entredEndDate">
             </span>
         </form>
         <p class="errorInput"></p>
@@ -46,10 +46,25 @@
     <section class="btns">
         <button id='submit' class="savingbtn">search</button>
     </section>
-    <section class="results">
+    <!-- <section class="results">
         <div id="tripInfo"></div>
-    </section>
-    <section class="allCards" id="cards">
+    </section> -->
+    <section class="allCards">
+        <div id="cards" class="hide data">
+            <div id="photo" class="img-pixabay">
+                <img src="" alt="destination photo" id="img">
+            </div>
+            <div id="dest" class="cityName"></div>
+            <div id="date_details">your trip start: <span id="sd"></span> and end at: <span id="ed"></span></div>
+            <div id="trip_details">
+            <span id="dg"></span> days to go, for<span id="dl"></span> days long
+            </div>
+            <div id="temp_details">
+            <div id="temp"></div>
+            <div id="weather"></div>
+            </div>
+            <button id="remove_trip" class="deletingbtn">Remove</button>
+        </div>
     </section>
 
     </main>
