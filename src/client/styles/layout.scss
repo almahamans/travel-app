@@ -6,6 +6,7 @@ height: min-content;
 flex-wrap: wrap;
 border-radius: 1rem;
 padding: 1% 1% 1% 2%;
+flex-direction: column;
 }
 
 .allCards{
@@ -48,6 +49,10 @@ text-align: center;
     label{
         margin-top: 17px;
     }
+}
+
+.deletingbtn{
+    margin-top: 20px;
 }
 .hide{
     display: none !important

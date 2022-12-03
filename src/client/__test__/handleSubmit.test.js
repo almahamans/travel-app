@@ -1,7 +1,7 @@
 import { handleSubmit } from '../js/formHandler'
 
-describe('Get Sentiment Analysis function', () => {
-    test('Check that the handleSubmit function is not undefined', () => {
+describe('test handleSubmit function', () => {
+    test('Check that the handleSubmit function is defined', () => {
         expect(handleSubmit).toBeDefined();
     });
 });

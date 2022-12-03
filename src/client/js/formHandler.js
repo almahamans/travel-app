@@ -10,9 +10,9 @@ const weatherbitAPI = '43e5b5e4fc4d44418a78aaeaf0f0ac59';
 const pixabayURL = 'https://pixabay.com/api/?key=';
 const pixabayAPI = '31434193-491972de18a02049fd2bb2d83';
 
-const trip_section = document.querySelector('#cards');
-const plan_trip = document.querySelector('.entredData');
 
+const plan_trip = document.querySelector('.entredData');
+const trip_section = document.querySelector('#cards');
 
 function handleSubmit(e) {
     e.preventDefault();
@@ -96,7 +96,7 @@ async function getWeatherData(lat, lng, date) {
 }
 
 async function getImage(toCity) {
-    const response = await fetch(`${pixabayURL}${pixabayAPI}&q=${toCity} city&image_type=photo`);
+    const response = await fetch(`${pixabayURL}${pixabayAPI}&q=${toCity}city&image_type=photo`);
     try {
         return await response.json();
     } catch (e) {
@@ -135,13 +135,14 @@ function updateUI(data) {
     let photo = document.getElementById('img');
     let weather = document.getElementById('weather');
 
-    destination_details.innerHTML = data.dest;
+    destination_details.innerHTML = data.dest.toUpperCase();
     departure_date.innerHTML = data.startDate;
     end_date.innerHTML = data.endDate
     daysLong.innerHTML = data.daysLong
     number_of_days.innerHTML = data.daystogo;
 
     temperature.innerHTML = data.temperature + '&#8451;';
+
     if (data.cityImage !== undefined) {
         photo.setAttribute('src', data.cityImage);
     }

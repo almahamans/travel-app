@@ -5,7 +5,7 @@
 <meta name="keywords" content="travel planning">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="charset=UTF-8">
-  
+
 <title>Travel App</title>
 </head>
 
@@ -25,43 +25,34 @@
                 <label for="entredDate"> Departing:</label>
                     <input type="date" name="entredDate" id="startDate" class="entredDate" required>   
             </span>
-            <!-- <span class="flightInfoSpan">
-                <label for="entredFlight">Flight info:</label>
-                    <input type="text" name="entredFlight" autocomplete="off" class="entredFlight" placeholder="flight info">   
-            </span>
-            <span class="hotelInfoSpan">
-                <label for="entredHotel">Hotel info:</label>
-                    <input type="text" name="entredHotel" autocomplete="off" class="entredHotel" placeholder="where you staying at?">    
-            </span> -->
             <span class="tripEndDateSpan">
                 <label for="entredEndDate"> End date:</label>
                     <input type="date" name="entredEndDate" id="endDate" class="entredEndDate">
             </span>
         </form>
-        <p class="errorInput"></p>
         </section>
         
         <a href="https://almahamans.github.io/to-do-list/main.html" target="_blank" class="atodo"> <p>Use our To Do list app to organize your trip</p></a>
         
-    <section class="btns">
+    <section>
         <button id='submit' class="savingbtn">search</button>
     </section>
-    <!-- <section class="results">
-        <div id="tripInfo"></div>
-    </section> -->
+
     <section class="allCards">
         <div id="cards" class="hide data">
-            <div id="photo" class="img-pixabay">
-                <img src="" alt="destination photo" id="img">
+            <div id="photo" >
+                <img src="../images/trip-holder.jpg" class="img-pixabay" alt="destination photo" id="img">
             </div>
-            <div id="dest" class="cityName"></div>
-            <div id="date_details">your trip start: <span id="sd"></span> and end at: <span id="ed"></span></div>
+            <div id="dest" class="cityName">france</div>
+            <div id="date_details">
+            your trip start at: <span id="sd"></span> and end at: <span id="ed"></span>
+            </div>
             <div id="trip_details">
             <span id="dg"></span> days to go, for<span id="dl"></span> days long
             </div>
             <div id="temp_details">
-            <div id="temp"></div>
-            <div id="weather"></div>
+            weather for then<span id="temp"></span>, 
+            <span id="weather"></span>
             </div>
             <button id="remove_trip" class="deletingbtn">Remove</button>
         </div>

@@ -1,4 +1,3 @@
-
 export function countdownDays(startDate) {
    let dthen= new Date(startDate),
     dnow = new Date()

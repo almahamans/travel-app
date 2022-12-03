@@ -20,6 +20,8 @@ header, footer{
 }
 .data{
     background-color:rgb(249, 229, 229);
+    color: white;
+    text-shadow: 1px 1px 6px black ;
 }
 input, button, .tripDesSpan, .tripDateSpan, .tripEndDateSpan, .hotelInfoSpan, .flightInfoSpan{  
     font-weight: 800;
@@ -29,10 +31,6 @@ input, button, .tripDesSpan, .tripDateSpan, .tripEndDateSpan, .hotelInfoSpan, .f
 }
 .entredData{
     background-color: rgb(227, 211, 189);
-}
-.addinginfo{
-    font-size: small;
-    color:rgb(149, 147, 147);
 }
 .atodo{
     text-decoration: none;
