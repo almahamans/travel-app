@@ -73,13 +73,11 @@ async function getGeoDetails(city) {
 //Function to get weather data
 async function getWeatherData(lat, lng, date) {
 
-    // Getting the timestamp for the current date and traveling date for upcoming processing.
     const timestamp_trip_date = Math.floor(new Date(date).getTime() / 1000);
     const todayDate = new Date();
     const timestamp_today = Math.floor(new Date(todayDate.getFullYear() + '-' + todayDate.getMonth() + '-' + todayDate.getDate()).getTime() / 1000);
 
     let response;
-    // Check if the date is gone and call the appropriate endpoint.
     if (timestamp_trip_date < timestamp_today) {
         let next_date = new Date(date);
         next_date.setDate(next_date.getDate() + 1);
@@ -96,7 +94,7 @@ async function getWeatherData(lat, lng, date) {
 }
 
 async function getImage(toCity) {
-    const response = await fetch(`${pixabayURL}${pixabayAPI}&q=${toCity}city&image_type=photo`);
+    const response = await fetch(pixabayURL + pixabayAPI + '&q=' + toCity + ' city&image_type=photo');
     try {
         return await response.json();
     } catch (e) {
