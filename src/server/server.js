@@ -25,16 +25,16 @@ app.get('/',function (req,res) {
 let projectData = {};
 
 app.post('/postData',function (req,res){
-    // projectData['dest'] = req.body.dest;
-    // projectData['startDate'] = req.body.startDate;
-    // projectData['endDate'] = req.body.endDate;
-    // projectData['temperature'] = req.body.temperature;
-    // projectData['weather_condition'] = req.body.weather_condition;
-    // projectData['daystogo'] = req.body.daystogo;
-    // projectData['daysLong'] = req.body.daysLong
-    // projectData['cityImage']  = req.body.cityImage;
+    projectData['dest'] = req.body.dest;
+    projectData['startDate'] = req.body.startDate;
+    projectData['endDate'] = req.body.endDate;
+    projectData['temperature'] = req.body.temperature;
+    projectData['weather_condition'] = req.body.weather_condition;
+    projectData['daystogo'] = req.body.daystogo;
+    projectData['daysLong'] = req.body.daysLong
+    projectData['cityImage']  = req.body.cityImage;
 
-    projectData = req.body
+    // projectData = req.body
     res.send(projectData)
 })
 
