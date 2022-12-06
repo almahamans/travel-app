@@ -1,5 +1,5 @@
 import {countdownDays, daysLong} from './date'
-import { checkInput } from './checkUserInput'
+// import { checkInput } from './checkUserInput'
 
 const details = {}
 
@@ -12,8 +12,12 @@ const pixabayURL = 'https://pixabay.com/api/?key=';
 const pixabayAPI = '31434193-491972de18a02049fd2bb2d83';
 
 
-const plan_trip = document.querySelector('.entredData');
-const trip_section = document.querySelector('#cards');
+let plan_trip 
+let trip_section 
+if(typeof document === undefined){
+    plan_trip = document.querySelector('.entredData');
+    trip_section = document.querySelector('#cards');
+}
 
 function handleSubmit(e) {
     e.preventDefault();
@@ -28,6 +32,7 @@ function handleSubmit(e) {
 
     try {
         // Fetching geo stats of destination place.
+
         getGeoDetails(details['dest'])
             .then((toInfo) => {
 

@@ -1,5 +1,5 @@
 import  { handleSubmit, trip_section } from "./formHandler";
-import { checkInput } from './checkUserInput'
+// import { checkInput } from './checkUserInput'
 
 
 const remove_trip = document.querySelector('#remove_trip')
