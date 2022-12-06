@@ -1,4 +1,5 @@
 import {countdownDays, daysLong} from './date'
+import { checkInput } from './checkUserInput'
 
 const details = {}
 
@@ -40,6 +41,7 @@ function handleSubmit(e) {
                 //Store weather details
                 details['temperature'] = weatherData['data'][0]['temp'];
                 details['weather_condition'] = weatherData['data']['0']['weather']['description'];
+                // details['weather_icon'] = weatherData['data']['0']['weather']['icon'];
 
                 //Calling Pixabay API to fetch the img of the city
                 return getImage(details['dest']);
@@ -131,21 +133,23 @@ function updateUI(data) {
     let daysLong = document.getElementById('dl');
     let temperature = document.getElementById('temp');
     let photo = document.getElementById('img');
-    let weather = document.getElementById('weather');
+    let weather = document.getElementById('weather')
+    // let weather_icon = document.getElementById('weather_icon')
 
     destination_details.innerHTML = data.dest.toUpperCase();
     departure_date.innerHTML = data.startDate;
     end_date.innerHTML = data.endDate
     daysLong.innerHTML = data.daysLong
     number_of_days.innerHTML = data.daystogo;
-
-    temperature.innerHTML = data.temperature + '&#8451;';
+    temperature.innerHTML = Math.floor(data.temperature) + '&#8451;';
 
     if (data.cityImage !== undefined) {
         photo.setAttribute('src', data.cityImage);
-    }
-
-    weather.innerHTML = data.weather_condition;
+    } 
+    weather.innerHTML = data.weather_condition
+    // let wi = `../icons/${data.weather_icon}.png`
+    // weather_icon.setAttribute('src', wi )
+    //weather_icon.innerHTML = data.weather_icon
 }
 
 export {

@@ -20,8 +20,8 @@ header, footer{
 }
 .data{
     background-color:rgb(249, 229, 229);
-    color: white;
-    text-shadow: 1px 1px 6px black ;
+    color:darkslategrey;
+    text-shadow: 1px 1px 6px white ;
 }
 input, button, .tripDesSpan, .tripDateSpan, .tripEndDateSpan, .hotelInfoSpan, .flightInfoSpan{  
     font-weight: 800;
@@ -36,4 +36,9 @@ input, button, .tripDesSpan, .tripDateSpan, .tripEndDateSpan, .hotelInfoSpan, .f
     text-decoration: none;
     color: palevioletred;
     text-shadow: 2px 2px 2px tan;
+}
+.error{
+    border-color: red;
+    color: rgb(120, 119, 119);
+    text-align: left;
 }

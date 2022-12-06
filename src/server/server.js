@@ -33,8 +33,7 @@ app.post('/postData',function (req,res){
     projectData['daystogo'] = req.body.daystogo;
     projectData['daysLong'] = req.body.daysLong
     projectData['cityImage']  = req.body.cityImage;
-
-    // projectData = req.body
+    // // projectData['weather_icon'] = req.body.weather_icon
     res.send(projectData)
 })
 

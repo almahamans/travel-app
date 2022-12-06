@@ -17,24 +17,25 @@
         <section class="entredData">           
             <form id="form">
                 <span class="tripDesSpan">
-                    <label for="entredDes">My&nbsptrip&nbspto:</label>
-                        <input type="text" autocomplete="off" name="entredDes" id="cityInput" class="entredDes" placeholder="where you going to?" required>             
+                    <label for="entredDes">Destination:</label>
+                        <input type="text" autocomplete="off" spellcheck="true" name="entredDes" id="cityInput" class="entredDes" placeholder="where you going to?" oninvalid="Client.checkInput()" required>             
                 </span>
 
             <span class="tripDateSpan">
-                <label for="entredDate"> Departing:</label>
-                    <input type="date" name="entredDate" id="startDate" class="entredDate" required>   
+                <label for="entredDate">Departing:</label>
+                    <input type="date" name="entredDate" id="startDate" class="entredDate">   
             </span>
             <span class="tripEndDateSpan">
-                <label for="entredEndDate"> End date:</label>
+                <label for="entredEndDate">Return date:</label>
                     <input type="date" name="entredEndDate" id="endDate" class="entredEndDate">
             </span>
         </form>
+        <p class="errorInfo hide"></p>
         </section>
         
         <a href="https://almahamans.github.io/to-do-list/main.html" target="_blank" class="atodo"> <p>Use our To Do list app to organize your trip</p></a>
         
-    <section>
+    <section class="btn">
         <button id='submit' class="savingbtn">search</button>
     </section>
 
@@ -45,13 +46,14 @@
             </div>
             <div id="dest" class="cityName"></div>
             <div id="date_details">
-            your trip start at: <span id="sd"></span> and end at: <span id="ed"></span>
+            You are departing at: <span id="sd"></span>, 
+            So you are <span id="dg"></span> days away to fly,
+            Your return day is: <span id="ed"></span>
             </div>
-            <div id="trip_details">
-            <span id="dg"></span> days to fly, your trip is <span id="dl"></span> days long
-            </div>
+            Your trip is <span id="dl"></span> days long. 
             <div id="temp_details">
-            weather for then <span id="temp"></span>,  
+            Weather for then <span id="temp"></span> degree,   
+            <!-- <img id="weather_icon" src="../icons/c01d.png" height="auto" width="auto">  -->
             <span id="weather"></span>
             </div>
             <button id="remove_trip" class="deletingbtn">Remove</button>

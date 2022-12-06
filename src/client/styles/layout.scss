@@ -54,7 +54,8 @@ text-align: center;
 .deletingbtn{
     margin-top: 20px;
 }
-.savingbtn{
+.btn{
+    display: flex;
     justify-content: center;
     align-items: center;
 }
