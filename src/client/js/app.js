@@ -1,14 +1,12 @@
-import  { handleSubmit, trip_section } from "./formHandler";
-// import { checkInput } from './checkUserInput'
-
+import  { handleSubmit } from "./formHandler";
+import { trip_section } from './updateUI'
 
 const remove_trip = document.querySelector('#remove_trip')
 .addEventListener('click',  () => {
     document.getElementById('form').reset();
-    trip_section.classList.add('hide');
+    trip_section.classList.add('hide')
 })
 
-// document.querySelector('#cityInput').addEventListener('input', checkInput)
 
 document.getElementById("submit")
 .addEventListener('click', handleSubmit)

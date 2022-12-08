@@ -18,19 +18,18 @@
             <form id="form">
                 <span class="tripDesSpan">
                     <label for="entredDes">Destination:</label>
-                        <input type="text" autocomplete="off" spellcheck="true" name="entredDes" id="cityInput" class="entredDes" placeholder="where you going to?" required>             
+                        <input type="text" autocomplete="off" spellcheck="true" name="entredDes" id="cityInput" class="entredDes" placeholder="where you going to?"  required pattern="[A-Za-z]">             
                 </span>
 
             <span class="tripDateSpan">
                 <label for="entredDate">Departing:</label>
-                    <input type="date" name="entredDate" id="startDate" class="entredDate">   
+                    <input type="date" name="entredDate" id="startDate" class="entredDate" required>   
             </span>
             <span class="tripEndDateSpan">
                 <label for="entredEndDate">Return date:</label>
-                    <input type="date" name="entredEndDate" id="endDate" class="entredEndDate">
+                    <input type="date" name="entredEndDate" id="endDate" class="entredEndDate" required>
             </span>
         </form>
-        <p class="errorInfo hide"></p>
         </section>
         
         <a href="https://almahamans.github.io/to-do-list/main.html" target="_blank" class="atodo"> <p>Use our To Do list app to organize your trip</p></a>
@@ -48,9 +47,9 @@
             <div id="date_details">
             You are departing at: <span id="sd"></span>, 
             So you are <span id="dg"></span> days away to fly,
-            Your return day is: <span id="ed"></span>
-            </div>
-            Your trip is <span id="dl"></span> days long. 
+            <br>Your return day is: <span id="ed"></span>
+            <br>Your trip is <span id="dl"></span> days long. 
+            </div>    
             <div id="temp_details">
             Weather for then <span id="temp"></span> degree,   
             <!-- <img id="weather_icon" src="../icons/c01d.png" height="auto" width="auto">  -->
