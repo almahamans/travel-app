@@ -33,4 +33,4 @@ An app to obtains a desired trip location, start date and end date from the user
 `npm test`
 
 ### Future work
-want to add weather icons, add error messages, break down the code into smaller modules.
+want to add weather icons, add error messages.
