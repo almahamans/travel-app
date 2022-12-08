@@ -11,6 +11,7 @@ An app to obtains a desired trip location, start date and end date from the user
 - Weatherbit api > get weather forcast.
 - Pixabay api > get images based on the entered city.
 - Linked to do app (previous work) so the user can arrange she/he's trip.
+- Use localstorage to save what user search.
 ## How to use it 
 - To ensure all packages and dependencies installed:
 
