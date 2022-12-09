@@ -1,5 +1,4 @@
 export const trip_section = document.querySelector('#cards')
-export const cards = document.querySelector('.allCards')
 export const destination_details = document.getElementById("dest");
 export const departure_date = document.getElementById("sd");
 export const end_date = document.getElementById("ed");

@@ -6,16 +6,16 @@ import { getWeatherData } from './getWeather'
 import { getGeoDetails } from './getGeo'
 
 const details = {}
+export const dest = document.querySelector('#cityInput')
+export const std = document.querySelector('#startDate')
+export const end = document.querySelector('#endDate')
 
 export function handleSubmit(e){
     e.preventDefault();
-
-    const dest = document.querySelector('#cityInput').value
-    details['dest'] = dest
-    const std = document.querySelector('#startDate').value
-    details['startDate'] = std
-    const end = document.querySelector('#endDate').value
-    details['endDate'] = end
+ 
+    details['dest'] = dest.value 
+    details['startDate'] = std.value 
+    details['endDate'] = end.value
     details['daystogo'] = countdownDays(std)
     details['daysLong'] = daysLong(std, end)
     
