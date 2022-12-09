@@ -10,7 +10,8 @@ An app to obtains a desired trip location, start date and end date from the user
 - geonames api > get cities name.
 - Weatherbit api > get weather forcast.
 - Pixabay api > get images based on the entered city.
-- Linked to do app (previous work) so the user can arrange she/he's trip.
+- Linked to-do list app (previous work) so the user can arrange she/he's trip.
+- localStorage > to save what user search.
 ## How to use it 
 - To ensure all packages and dependencies installed:
 
@@ -33,4 +34,4 @@ An app to obtains a desired trip location, start date and end date from the user
 `npm test`
 
 ### Future work
-want to add weather icons, add error messages, break down the code into smaller modules.
+want to add weather icons, add error messages.
