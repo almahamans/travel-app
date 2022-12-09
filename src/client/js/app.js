@@ -1,6 +1,7 @@
 import  { handleSubmit } from "./formHandler";
 import { trip_section } from './updateUI'
 
+
 const remove_trip = document.querySelector('#remove_trip')
 .addEventListener('click',  () => {
     document.getElementById('form').reset();
