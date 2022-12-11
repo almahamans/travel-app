@@ -1,3 +1,5 @@
+import { Clone } from './cloneTripSec'
+
 export const trip_section = document.querySelector('#cards')
 export const destination_details = document.getElementById("dest");
 export const departure_date = document.getElementById("sd");
@@ -34,4 +36,6 @@ export function updateUI(data) {
     // let wi = `../icons/${data.weather_icon}.png`
     // weather_icon.setAttribute('src', wi )
     //weather_icon.innerHTML = data.weather_icon
+
+    Clone();
 }

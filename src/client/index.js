@@ -6,6 +6,7 @@ import { postData } from './js/clientServer'
 import { getImage } from './js/getImage'
 import { getWeatherData } from './js/getWeather'
 import { getGeoDetails } from './js/getGeo'
+import { Clone } from './js/cloneTripSec'
 
 import './styles/buttons.scss'
 import './styles/layout.scss'
@@ -24,4 +25,5 @@ postData,
 getImage,
 getWeatherData,
 getGeoDetails, 
+Clone
 }

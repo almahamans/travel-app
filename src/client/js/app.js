@@ -15,6 +15,7 @@ document.getElementById("submit")
     let rg = /\d/.test(dest.value)
     if(!rg && dest.value || std.value || end.value !== ''){
         handleSubmit(e)
+        document.getElementById('form').reset();
     } else {
         error.classList.remove('hide')
         return
