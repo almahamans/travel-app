@@ -1,6 +1,8 @@
 # Travel App
 ## Description 
-An app to obtains a desired trip location, start date and end date from the user then displays weather and an image of the location using information obtained from external APIs. The app suitable for all screen's size. The app can check the value of entred input whether it is a text or contain numbers and display an error message.
+An app to obtains a desired trip location, start date and end date from the user then displays weather and an image of the location using information obtained from external APIs. The app suitable for all screen's size.
+
+The app can check the value of entred input whether it is a text or contain numbers and display an error message. The app should display more than one Trip card in browser each has it is own information.
 ## Built with 
 - html5.
 - sacc > to make style and make the app responsive.
