@@ -1,15 +1,13 @@
-import  { handleSubmit, dest, std, end } from "./formHandler";
-import { trip_section } from './updateUI'
+import  { handleSubmit } from "./formHandler";
+import { dest, std, end, error, trip_section} from './variables'
 
-
-const remove_trip = document.querySelector('#remove_trip')
+export const remove_trip = document.querySelector('#remove_trip')
 .addEventListener('click',  () => {
     document.getElementById('form').reset();
     trip_section.classList.add('hide')
 })
 
-// on submit fire apis 
-const error = document.querySelector('.error')
+// on submit; fire apis 
 document.getElementById("submit")
 .addEventListener('click', (e)=>{
     e.preventDefault()
@@ -31,8 +29,3 @@ dest.addEventListener('change', ()=>{
         error.classList.add('hide')
     }
 })
-
-
-export {
-    remove_trip
-}

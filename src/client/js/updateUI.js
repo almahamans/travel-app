@@ -1,15 +1,5 @@
 import { Clone } from './cloneTripSec'
-
-export const trip_section = document.querySelector('#cards')
-export const destination_details = document.getElementById("dest");
-export const departure_date = document.getElementById("sd");
-export const end_date = document.getElementById("ed");
-export const number_of_days = document.getElementById('dg');
-export const day_Long = document.getElementById('dl');
-export const temperature = document.getElementById('temp');
-export const photo = document.getElementById('img');
-export const weather = document.getElementById('weather')
-    //export let weather_icon = document.getElementById('weather_icon')
+import { day_Long, departure_date, destination_details, number_of_days, photo, weather, temperature, end_date} from './variables'
     
 //Updating the UI
 export function updateUI(data) {

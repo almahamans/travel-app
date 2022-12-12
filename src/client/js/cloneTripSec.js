@@ -1,4 +1,5 @@
-export let i =0
+import { i } from './variables'
+
 // clone trip card to create multiple 
 export function Clone() {
   let main = document.querySelector('main'),

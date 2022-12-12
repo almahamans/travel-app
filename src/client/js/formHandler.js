@@ -4,11 +4,9 @@ import { postData } from './clientServer'
 import { getImage } from './getImage'
 import { getWeatherData } from './getWeather'
 import { getGeoDetails } from './getGeo'
+import { std, end, dest} from './variables'
 
 const details = {}
-export const dest = document.querySelector('#cityInput')
-export const std = document.querySelector('#startDate')
-export const end = document.querySelector('#endDate')
 
 export function handleSubmit(e){
     e.preventDefault();

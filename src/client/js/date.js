@@ -1,4 +1,5 @@
-import { std, end } from './formHandler'
+import { std, end, dateErr } from './variables'
+
 // count down days to fly
 export function countdownDays(startDate) {
    let dthen= new Date(startDate),
@@ -20,8 +21,7 @@ export function daysLong(startDate, endDate){
 }
 
 // check entered dates while user writing
-const dateErr = document.querySelector('#date-error')
-let today = new Date()
+export let today = new Date()
 
 std.addEventListener('change', () => {
   if(std.value < changeDateFormat(today)){
@@ -45,7 +45,7 @@ end.addEventListener('change', () => {
 })
 
 // to match with the input
-function changeDateFormat(date) {
+export function changeDateFormat(date) {
      let year = date.getFullYear();
      let month = date.getMonth() + 1;
      let day = date.getDate();
