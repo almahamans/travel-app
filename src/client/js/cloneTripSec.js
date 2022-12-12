@@ -1,4 +1,5 @@
 export let i =0
+// clone trip card to create multiple 
 export function Clone() {
   let main = document.querySelector('main'),
   sec = document.querySelector(".allCards"),
@@ -10,4 +11,6 @@ clone.style.marginBottom = '2%'
 
 sec.appendChild(clone)
 main.appendChild(sec)
+
+clone.scrollIntoView({behavior: "smooth"})
 }

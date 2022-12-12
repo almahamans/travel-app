@@ -13,9 +13,6 @@ export const weather = document.getElementById('weather')
     
 //Updating the UI
 export function updateUI(data) {
-    trip_section.classList.remove('hide');
-    trip_section.scrollIntoView({behavior: "smooth"});
-
     destination_details.innerHTML = data.dest.toUpperCase()
     
     departure_date.innerHTML = data.startDate
@@ -37,5 +34,6 @@ export function updateUI(data) {
     // weather_icon.setAttribute('src', wi )
     //weather_icon.innerHTML = data.weather_icon
 
+    //use clone here to update UI with its info then clone empty card 
     Clone();
 }
