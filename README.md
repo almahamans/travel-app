@@ -4,15 +4,15 @@ An app to obtains a desired trip location, start date and end date from the user
 
 The app abel to check the value of entered input for destination if contain numbers also check the entered dates if it's in correct way then displays error messages. The app should display more than one Trip card in browser each has it is own information.
 ## Built with 
-- html5.
-- scss > to make style and make the app responsive.
-- js dom.
-- node > upload all packegas.
-- express > build routeres.
-- geonames api > get cities name.
-- Weatherbit api > get weather forcast.
-- Pixabay api > get images based on the entered city.
-- Linked to-do list app (previous work) so the user can arrange she/he's trip.
+- Html5 > to build form.
+- Scss > to make style and make the app responsive.
+- JS dom.
+- Node js > to upload all packegas.
+- Express > to build routeres and server.
+- Geonames api > accept city/country name and return lat and lon.
+- Weatherbit api > accept city/country name and what returned from geonames api; return weather forcast.
+- Pixabay api > to get images based on the entered city.
+- Linked to-do list app (previous work) so the user can arrange her/his trip.
 ## How to use it 
 - To ensure all packages and dependencies installed:
 
