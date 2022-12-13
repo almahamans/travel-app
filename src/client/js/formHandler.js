@@ -14,8 +14,8 @@ export function handleSubmit(e){
     details['dest'] = dest.value 
     details['startDate'] = std.value 
     details['endDate'] = end.value
-    details['daystogo'] = countdownDays(std)
-    details['daysLong'] = daysLong(std, end)
+    details['daystogo'] = countdownDays(std.value)
+    details['daysLong'] = daysLong(std.value, end.value)
     
     try {
         // Fetching geo stats of destination place.
