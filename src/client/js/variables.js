@@ -7,7 +7,7 @@ export const day_Long = document.getElementById('dl');
 export const temperature = document.getElementById('temp');
 export const photo = document.getElementById('img');
 export const weather = document.getElementById('weather')
-//export let weather_icon = document.getElementById('weather_icon')
+export const weather_icon = document.getElementById('weather_icon')
 
 export const dest = document.querySelector('#cityInput')
 export const std = document.querySelector('#startDate')

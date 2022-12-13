@@ -1,5 +1,5 @@
 import { Clone } from './cloneTripSec'
-import { day_Long, departure_date, destination_details, number_of_days, photo, weather, temperature, end_date} from './variables'
+import { day_Long, departure_date, destination_details, weather_icon, number_of_days, photo, weather, temperature, end_date} from './variables'
     
 //Updating the UI
 export function updateUI(data) {
@@ -20,9 +20,8 @@ export function updateUI(data) {
     } 
     weather.innerHTML = data.weather_condition
     
-    // let wi = `../icons/${data.weather_icon}.png`
-    // weather_icon.setAttribute('src', wi )
-    //weather_icon.innerHTML = data.weather_icon
+    let wi = `../icons/${data.weather_icon}.png`
+    weather_icon.setAttribute('src', wi)
 
     //use clone here to update UI with its info then clone empty card 
     Clone();

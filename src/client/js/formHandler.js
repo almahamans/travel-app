@@ -31,8 +31,8 @@ export function handleSubmit(e){
             .then((weatherData) => {
                 //Store weather details
                 details['temperature'] = weatherData['data'][0]['temp'];
-                details['weather_condition'] = weatherData['data']['0']['weather']['description'];
-                // details['weather_icon'] = weatherData['data']['0']['weather']['icon'];
+                details['weather_condition'] = weatherData['data'][0]['weather']['description'];
+                details['weather_icon'] = weatherData['data'][0]['weather']['icon'];
 
                 //Calling Pixabay API to fetch the img of the city
                 return getImage(details['dest']);
