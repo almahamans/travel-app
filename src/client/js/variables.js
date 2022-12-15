@@ -13,7 +13,8 @@ export const dest = document.querySelector('#cityInput')
 export const std = document.querySelector('#startDate')
 export const end = document.querySelector('#endDate')
 
-export let i =0
+export let i = 0
+export let x = 0
 
 export const dateErr = document.querySelector('#date-error')
 
