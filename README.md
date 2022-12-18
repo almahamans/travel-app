@@ -2,7 +2,9 @@
 ## Description 
 An app to obtains a desired trip location, start date and end date from the user then displays weather discription and icon and an image of the location using information obtained from external APIs as well as trip long in days and how many days left to fly. The app suitable for all screen's size.
 
-The app abel to check the value of entered input for destination if contain numbers also check the entered dates if it's in correct way then displays error messages. The app should display more than one Trip card in browser each has it is own information.
+The app abel to check the value of entered input for destination if contain numbers also check the entered dates if it's in correct way then displays error messages. The app should display more than one Trip card in browser each has it is own information. 
+
+The user can remove one trip card or all.
 ## Built with 
 - Html5 > to build form.
 - Scss > to make style and make the app responsive.
