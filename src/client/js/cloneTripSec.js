@@ -21,7 +21,9 @@ main.appendChild(sec)
 
 clone.scrollIntoView({behavior: "smooth"})
 
-document.querySelector(`#delete${x}`).addEventListener('click', () => {
-  document.querySelector(`#card${i}`).classList.add('hide')
-})
+// remove one card trip when click on button
+let b = document.querySelector(`#delete${x}`)
+    b.addEventListener('click', (event) => {
+      event.target.closest('section').remove()
+     })
 }

@@ -1,20 +1,14 @@
 import  { handleSubmit } from "./formHandler";
-import { dest, std, end, error, trip_section} from './variables'
-
-export const remove_trip = document.querySelector('#remove_trip')
-.addEventListener('click',  () => {
-    document.getElementById('form').reset();
-    trip_section.classList.add('hide')
-})
+import { dest, std, end, error} from './variables'
 
 // on submit; fire apis 
-document.getElementById("submit")
-.addEventListener('click', (e)=>{
+document.getElementById("submit").addEventListener('click', (e)=>{
     e.preventDefault()
     //check if there is any empty feild
     if(dest.value || std.value || end.value !== ''){
         handleSubmit(e)
-        document.getElementById('form').reset();
+        document.getElementById('form').reset()
+        document.querySelector('#r_all').classList.remove('hide')
     } else {
         error.classList.remove('hide')
         error.innerHTML = '* please fill all feilds correctly'
