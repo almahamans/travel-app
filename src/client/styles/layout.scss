@@ -1,21 +1,32 @@
-.data{
-display: flex;
-width: min-content;
-margin: 1%;
-height: min-content;
-flex-wrap: wrap;
-border-radius: 1rem;
-padding: 1% 1% 1% 2%;
-flex-direction: column;
-}
-
-.allCards{
+.allCards {
     display: flex;
-    flex-wrap: wrap;
-    width: auto;
+    width: 95%;
     height: auto;
-   margin: 4%;
-   padding: 0;
+    margin-left: 2%;
+    margin-top: 6%;
+    padding: 0;
+    /* make slideshow */
+    overflow-x: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;   /* Firefox */
+  }
+  /* hide scroll  */
+  .allCards::-webkit-scrollbar {
+    display: none;
+  }
+.data{
+    display: flex;
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+    margin: 1%;
+    height: -webkit-min-content;
+    height: -moz-min-content;
+    height: min-content;
+    flex-wrap: wrap;
+    border-radius: 1rem;
+    padding: 1% 1% 1% 2%;
+    flex-direction: column;
 }
 .header{
 left: 0;

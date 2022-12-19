@@ -6,7 +6,7 @@ import { getImage } from './js/getImage'
 import { getWeatherData } from './js/getWeather'
 import { getGeoDetails } from './js/getGeo'
 import { Clone } from './js/cloneTripSec'
-import { dateErr, std, end, dest, trip_section, error } from './js/variables'
+import { dateErr, std, end, dest, error } from './js/variables'
 import { removeAll } from './js/removeCards'
 
 import './styles/buttons.scss'
@@ -17,7 +17,7 @@ import './styles/cards.scss'
 
 
 export {
-std, end, dest, error, trip_section,dateErr, 
+std, end, dest, error,dateErr, 
 handleSubmit,
 daysLong, countdownDays, today, changeDateFormat,
 updateUI,

@@ -18,7 +18,7 @@ export function updateUI(data) {
     if (data.cityImage !== undefined) {
         photo.setAttribute('src', data.cityImage)
     } 
-    weather.innerHTML = data.weather_condition
+    weather.innerHTML = data.weather_description
     
     let wi = `../icons/${data.weather_icon}.png`
     weather_icon.setAttribute('src', wi)
