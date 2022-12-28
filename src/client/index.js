@@ -17,7 +17,7 @@ import './styles/cards.scss'
 
 
 export {
-std, end, dest, error,dateErr, 
+std, end, dest, error, dateErr, 
 handleSubmit,
 daysLong, countdownDays, today, changeDateFormat,
 updateUI,

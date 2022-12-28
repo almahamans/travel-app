@@ -13,7 +13,7 @@ export function updateUI(data) {
 
     number_of_days.innerHTML = data.daystogo
 
-    temperature.innerHTML = Math.floor(data.temperature) + '&#8451;'
+    temperature.innerHTML = `${Math.floor(data.temperature) }&#8451`
 
     if (data.cityImage !== undefined) {
         photo.setAttribute('src', data.cityImage)

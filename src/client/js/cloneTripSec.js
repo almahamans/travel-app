@@ -6,7 +6,7 @@ export function Clone() {
   sec = document.querySelector(".allCards"),
   original = document.querySelector('.data'),
   clone = original.cloneNode(true); 
-clone.id = "card" + ++i; 
+  clone.id = `card${++i}`;  
 clone.classList.remove('hide')
 clone.style.marginBottom = '2%'
 
