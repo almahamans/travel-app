@@ -1,0 +1,23 @@
+.entredDes, .entredDate, .entredEndDate, .entredFlight, .entredHotel {
+  border: none;
+  padding: 3%;
+  background-color: inherit;
+  margin-top: 9px;
+}
+
+:is(.entredDes, .entredDate, .entredEndDate):focus {
+  outline: none;
+}
+
+.tripDesSpan, .tripDateSpan, .tripEndDateSpan {
+  display: flex;
+  gap: 10px;
+}
+
+.tripDesSpan, .tripDateSpan{
+  margin-bottom: -20px;
+}
+
+label {
+  margin-top: 27px;
+}
