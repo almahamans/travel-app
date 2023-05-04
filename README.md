@@ -7,7 +7,7 @@ The app abel to check the value of entered input for destination if contain numb
 The user can remove one trip card or all.
 ## Built with 
 - Html5 > to build form.
-- Scss > to make style and make the app responsive.
+- Css > to make style and make the app responsive.
 - JS dom.
 - Node js > to upload all packegas.
 - Express > to build routeres and server.
@@ -20,15 +20,7 @@ The user can remove one trip card or all.
 
 `npm install`
 
-- To builds and generates dist folder for production:
-
-`npm run build-prod`
-
-- To builds and runs the webpack dev server for development:
-
-`npm run build-dev`
-
-- To run express serevr (port 3005):
+- To run express serevr (port 3001):
 
 `npm start`
 
