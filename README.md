@@ -6,7 +6,7 @@ The app abel to check the value of entered input for destination if contain numb
 
 The user can remove one trip card or all.
 ## Built with 
-- Html5 > to build form.
+- Html5 > to build form and inhance the SEO.
 - Css > to make style and make the app responsive.
 - JS dom.
 - Node js > to upload all packegas.
