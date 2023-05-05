@@ -27,3 +27,6 @@ The user can remove one trip card or all.
 - To test:
 
 `npm test`
+
+### Future work
+ Add localStorage, add information about the entered destination and use React js framework 
