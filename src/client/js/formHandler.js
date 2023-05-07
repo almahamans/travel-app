@@ -1,10 +1,12 @@
-const details = {}
-
 const dest = document.querySelector('#cityInput')
 const error = document.querySelector('.error')
 const std = document.querySelector('#startDate')
 const end = document.querySelector('#endDate')
 
+//collect all data in object then send it to the server
+const details = {}
+
+//main function
 function handleSubmit(e){
     e.preventDefault();
 
@@ -44,13 +46,10 @@ function handleSubmit(e){
     } catch (e) {
         console.log('error', e);
     }
-
 }
-
+// Function to get Geo stats
  const geoNamesURL = 'http://api.geonames.org/searchJSON?q='
 const username = 'meem'
-
-// Function to get Geo stats
 async function getGeoDetails(city){
     const response = await fetch(`${geoNamesURL}${city}&maxRows=10&username=${username}`
     )
@@ -60,10 +59,9 @@ async function getGeoDetails(city){
         console.log('error', e);
     }
 }
-
+//Function to get pic data
 const pixabayURL = 'https://pixabay.com/api/?key=';
 const pixabayAPI = '31434193-491972de18a02049fd2bb2d83';
-
 async function getImage(toCity) {
     const response = await fetch(pixabayURL + pixabayAPI + '&q=' + toCity + ' city&image_type=photo');
     try {
@@ -72,23 +70,18 @@ async function getImage(toCity) {
         console.log('error', e);
     }
 }
-
+//Function to get weather data
 const weatherforecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?lat=';
 const weatherhistoryURL = 'https://api.weatherbit.io/v2.0/history/daily?lat=';
 const weatherbitAPI = '43e5b5e4fc4d44418a78aaeaf0f0ac59';
-
-//Function to get weather data
 async function getWeatherData(lat, lng, date) {
-
     const timestamp_trip_date = Math.floor(new Date(date).getTime() / 1000);
     const todayDate = new Date();
     const timestamp_today = Math.floor(new Date(todayDate.getFullYear() + '-' + todayDate.getMonth() + '-' + todayDate.getDate()).getTime() / 1000);
-
     let response;
     if (timestamp_trip_date < timestamp_today) {
         let next_date = new Date(date);
         next_date.setDate(next_date.getDate() + 1);
-
         response = await fetch(`${weatherhistoryURL}${lat}&lon=${lng}&start_date=${date}&end_date=${next_date}&key=${weatherbitAPI}`)
     } else {
         response = await fetch(`${weatherforecastURL}${lat}&lon=${lng}&key=${weatherbitAPI}`);
@@ -99,16 +92,7 @@ async function getWeatherData(lat, lng, date) {
         console.log('error', e)
     }
 }
-// rest country
-// async function restCountries(dest){
-// const res = await fetch(`https://restcountries.com/v3.1/all?feilds:${dest};${dest}`)
-// try{
-// return res.json()
-// } catch(e) {
-//     console.log('error', e)
-// }
-// }
-
+//post data to the server
 async function postData(details) {
     const response = await fetch('http://localhost:3001/postData', {
         method: "POST",
@@ -136,14 +120,7 @@ let temperature = document.getElementById('temp');
 let photo = document.getElementById('img');
 let weather = document.getElementById('weather')
 let weather_icon = document.getElementById('weather_icon')
-// let dest_name = document.getElementById('name')
-// let dest_country = document.getElementById('country')
-// let dest_flag = document.getElementById('flag')
-// let dest_reg = document.getElementById('reg')
-// let dest_subreg = document.getElementById('subreg')
-// let dest_lang = document.getElementById('lang')
-// let dest_currency = document.getElementById('currency')
-// let dest_currSymbol = document.getElementById('currSymbol')
+
 function updateUI(data) {
     destination_details.innerHTML = data.dest.toUpperCase()
     departure_date.innerHTML = data.startDate
@@ -158,24 +135,10 @@ function updateUI(data) {
     let wi = `../icons/${data.weather_icon}.png`
     weather_icon.setAttribute('src', wi)
 
-    // dest_name.innerHTML = data.cityName
-    // dest_country.innerHTML = data.capital
-    // dest_flag.setAttribute('src', data.flag)
-    // dest_currency.innerHTML = data.currency
-    // dest_currSymbol.innerHTML = data.currency_symbol
-    // dest_lang.innerHTML = data.lang
-    // dest_reg.innerHTML = data.region
-    // if(data.subregion){
-    //    dest_subreg.innerHTML = data.subregion 
-    // } else {
-    //     dest_subreg.innerHTML = data.content 
-    // }
-    
-
     Clone()
 }
 
-//DOM
+//error message when user entered numbers in destination field
 dest.addEventListener('change', ()=>{
      if(/\d/.test(dest.value)){
         error.classList.remove('hide') 
@@ -184,9 +147,8 @@ dest.addEventListener('change', ()=>{
         error.classList.add('hide')
     }
 })
-
-document.getElementById("submit")
-.addEventListener('click', (e)=>{
+//main function... display errors or display the result
+document.getElementById("submit").addEventListener('click', (e)=>{
     e.preventDefault()
     if(dest.value !== '' ){
         document.querySelector('#r_all').classList.remove('hide')
@@ -196,12 +158,10 @@ document.getElementById("submit")
         error.classList.remove('hide')
         error.innerHTML = '* please fill all feilds correctly'
     }
-}
-)
+})
 
-let i = 0
-let x = 0
-let y = 0
+//clone empty trip card to allow using multiple destinations
+let i = 0, y=0, x=0
 function Clone() {
 let main = document.querySelector('main'),
 sec = document.querySelector(".allCards"),
@@ -210,40 +170,22 @@ clone = original.cloneNode(true);
 clone.id = `card${++i}`; 
 clone.classList.remove('hide')
 clone.style.marginBottom = '2%'
-
-// let btninfo = document.createElement('button')
-// btninfo.innerHTML = 'more info about this city'
-// btninfo.className = 'savingbtn'
-
-// let original2 = document.querySelector('.info')
-// let clone2 = original2.cloneNode(true);
-// clone2.id = `more_info${++y}`
-
+//create remove button to remove one card
 let btnd = document.createElement('button')
 btnd.innerHTML = 'Remove'
 btnd.className = 'deletingbtn'
 btnd.id = `delete${++x}`
-
-// clone.appendChild(btninfo)
+//append the button to the cloned section
 clone.appendChild(btnd)
-// clone.appendChild(clone2)
 sec.appendChild(clone)
 main.appendChild(sec)
-
-clone.scrollIntoView({behavior: "smooth"}) 
 
 let b = document.querySelector(`#delete${x}`)
     b.addEventListener('click', (event) => {
         event.target.closest('section').remove()
-     })
-
-// let b2 = btninfo
-// b2.addEventListener('click', ()=>{
-//     document.querySelector(`#more_info${y}`).classList.remove('hide')
-// })
-// document.querySelector('#close').addEventListener('click', (event)=>{
-//     document.querySelector(`#more_info${y}`).classList.add('hide')
-// })     
+     })  
+     
+clone.scrollIntoView({behavior: "smooth"}) 
 }
 
 //remove all cards
@@ -276,7 +218,23 @@ document.querySelector(`#r_all`).addEventListener('click', (event) => {
       / (1000 * 60 * 60 * 24)
       ) + 1
  }
-//check date entered
+//cahnge date formate to easy checking
+function changeDateFormat(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let formatedDate = "";
+    month = month < 10 ? month = "0" + month : month;
+    day = day < 10 ? day = "0" + day : day;
+    formatedDate += year;
+    formatedDate += "-";
+    formatedDate += month;
+    formatedDate += "-";
+    formatedDate += day;
+    return formatedDate
+}
+
+//check the validity of date entered
 const dateErr = document.querySelector('#date-error')
 let today = new Date()
 
@@ -295,23 +253,8 @@ end.addEventListener('change', () => {
         dateErr.innerHTML = 'Wrong dates enteries'
     } else if(std.value === end.value){
         dateErr.classList.remove('hide')
-        dateErr.innerHTML = `Sure want to stay in this city less than 1 day only!!`
+        dateErr.innerHTML = `Are you passing by!`
     }  else {
         dateErr.classList.add('hide')
     }
 })
-
-function changeDateFormat(date) {
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    let formatedDate = "";
-    month = month < 10 ? month = "0" + month : month;
-    day = day < 10 ? day = "0" + day : day;
-    formatedDate += year;
-    formatedDate += "-";
-    formatedDate += month;
-    formatedDate += "-";
-    formatedDate += day;
-    return formatedDate
-   }
