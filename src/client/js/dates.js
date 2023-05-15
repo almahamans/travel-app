@@ -1,6 +1,6 @@
 //check the validity of date entered
-const std = document.querySelector('#startDate')
-const end = document.querySelector('#endDate')
+// const std = document.querySelector('#startDate')
+// const end = document.querySelector('#endDate')
 const dateErr = document.querySelector('#date-error')
 let today = new Date()
 

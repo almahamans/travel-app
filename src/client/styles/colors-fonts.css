@@ -50,8 +50,8 @@ input, button, .tripDesSpan, .tripDateSpan, .tripEndDateSpan, .hotelInfoSpan, .f
 
 .atodo {
   text-decoration: none;
-  color: palevioletred;
-  text-shadow: 2px 2px 2px tan;
+  color: #73213E;
+  text-shadow: 2px 2px 2px #E9D7BE;
 }
 
 .error {

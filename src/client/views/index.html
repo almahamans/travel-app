@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta name="description" content="travel planning app">
 <meta name="keywords" content="travel planning">
@@ -24,26 +24,25 @@
             <form id="form">
                 <span class="tripDesSpan">
                     <label for="entredDes">Destination:</label>
-                        <input type="text" autocomplete="off" spellcheck="true" name="entredDes" id="cityInput" class="entredDes" placeholder="where you going to?">             
+                        <input type="text" role="text" aria-label="Write Destination" autocomplete="off" spellcheck="true" name="entredDes" id="cityInput" class="entredDes" placeholder="where you going to?">             
                 </span>
-
             <span class="tripDateSpan">
-                <label for="entredDate">Departing:</label>
+                <label for="entredDate">Departing: </label>
                     <input type="date" name="entredDate" id="startDate" class="entredDate">   
-            </span>
+                </span>
             <span class="tripEndDateSpan">
-                <label for="entredEndDate">Return date:</label>
-                    <input type="date" name="entredEndDate" id="endDate" class="entredEndDate">
+                <label for="entredEndDate">Return date: </label>
+                    <input type="date" name="entredEndDate" id="endDate" class="entredEndDate"> 
             </span>
         </form>
         <p class="error hide"></p>
         <p id="date-error" class="error hide"></p>
         </section>
         
-        <a href="https://almahamans.github.io/to-do-list/main.html" target="_blank" class="atodo"> <p>Use our To Do list app to organize your trip</p></a>
+        <a href="https://almahamans.github.io/to-do-list/main.html" target="_blank" class="atodo" role="link" aria-labelledby="to-do-list"> <p>Use our To Do list app to organize your trip</p></a>
         
     <section class="btn">
-        <button id='submit' class="savingbtn">search</button>
+        <button id='submit' class="savingbtn" role="button" aria-labelledby="search">search</button>
     </section>
  <button id="r_all" class="deletingbtn rem-all hide">Remove All Cards</button>
 
