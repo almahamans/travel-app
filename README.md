@@ -6,7 +6,7 @@ The app abel to check the value of entered input for destination if contain numb
 
 The user can remove one trip card or all.
 ## Built with 
-- Html5 > to build form and inhance the SEO.
+- Html5 > to build form and enhance the SEO, performance, best practice and accessibitiy.
 - Css > to make style and make the app responsive.
 - JS dom.
 - Node js > to upload all packegas.
@@ -36,7 +36,8 @@ The user can remove one trip card or all.
 #### - Result after pressing search button and shows the ability to add multiple cards
 ![Result](https://user-images.githubusercontent.com/43613434/236657339-f86773d9-9d64-48a6-8435-7de98b4979e6.png)
 
-
+### Photo of lighthouse test
+![lighthouse test](https://github.com/almahamans/travel-app/assets/43613434/c73027c5-4561-4e7a-a74d-0595116858ee)
 
 
 ### Future work
