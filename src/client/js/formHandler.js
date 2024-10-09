@@ -26,12 +26,19 @@ function handleSubmit(e){
                 return getWeatherData(lat, lng, details['startDate']);
             })
             .then((weatherData) => {
-                //Store weather details
-                details['temperature'] = weatherData['data'][0]['temp'];
-                details['weather_condition'] = weatherData['data'][0]['weather']['description'];
-                details['weather_icon'] = weatherData['data'][0]['weather']['icon'];
-                //Calling Pixabay API to fetch the img of the city
-                return getImage(details['dest']);
+              if (weatherData) {
+                // Store weather details
+                details["temperature"] = weatherData["data"][0]["temp"];
+                details["weather_condition"] = weatherData["data"][0]["weather"]["description"];
+                details["weather_icon"] = weatherData["data"][0]["weather"]["icon"];
+              } else {
+                // Handle case where weather data is null (API call failed)
+                details["temperature"] = "N/A";
+                details["weather_condition"] = "Weather data unavailable";
+                details["weather_icon"] = "default-icon";
+              }
+              // Calling Pixabay API to fetch the img of the city
+              return getImage(details["dest"]);
             })
             .then((imageDetails) => {
                 if (imageDetails['hits'].length > 0) {
@@ -43,55 +50,64 @@ function handleSubmit(e){
                 updateUI(data)
             })
             
-    } catch (e) {
-        console.log('error', e);
+    }catch (e) {
+        console.error('error in fetching data', e);
     }
 }
 // Function to get Geo stats
- const geoNamesURL = 'http://api.geonames.org/searchJSON?q='
+const geoNamesURL = 'http://api.geonames.org/searchJSON?q='
 const username = 'meem'
 async function getGeoDetails(city){
-    const response = await fetch(`${geoNamesURL}${city}&maxRows=10&username=${username}`
-    )
     try {
+        const response = await fetch(`${geoNamesURL}${city}&maxRows=10&username=${username}`);
         return await response.json();
     } catch (e) {
-        console.log('error', e);
+        console.error('error in fetching geo data', e);
     }
 }
 //Function to get pic data
 const pixabayURL = 'https://pixabay.com/api/?key=';
 const pixabayAPI = '31434193-491972de18a02049fd2bb2d83';
 async function getImage(toCity) {
-    const response = await fetch(pixabayURL + pixabayAPI + '&q=' + toCity + ' city&image_type=photo');
     try {
+        const response = await fetch(pixabayURL + pixabayAPI + "&q=" + toCity + " city&image_type=photo");
         return await response.json();
-    } catch (e) {
-        console.log('error', e);
+    }catch (e) {
+        console.error('error in fetching pictures', e);
     }
 }
 //Function to get weather data
 const weatherforecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?lat=';
 const weatherhistoryURL = 'https://api.weatherbit.io/v2.0/history/daily?lat=';
 const weatherbitAPI = '43e5b5e4fc4d44418a78aaeaf0f0ac59';
-async function getWeatherData(lat, lng, date) {
-    const timestamp_trip_date = Math.floor(new Date(date).getTime() / 1000);
-    const todayDate = new Date();
-    const timestamp_today = Math.floor(new Date(todayDate.getFullYear() + '-' + todayDate.getMonth() + '-' + todayDate.getDate()).getTime() / 1000);
-    let response;
-    if (timestamp_trip_date < timestamp_today) {
-        let next_date = new Date(date);
-        next_date.setDate(next_date.getDate() + 1);
-        response = await fetch(`${weatherhistoryURL}${lat}&lon=${lng}&start_date=${date}&end_date=${next_date}&key=${weatherbitAPI}`)
-    } else {
-        response = await fetch(`${weatherforecastURL}${lat}&lon=${lng}&key=${weatherbitAPI}`);
+    async function getWeatherData(lat, lng, date) {
+      const timestamp_trip_date = Math.floor(new Date(date).getTime() / 1000);
+      const todayDate = new Date();
+      const timestamp_today = Math.floor(
+        new Date(todayDate.getFullYear() + "-" + (todayDate.getMonth() + 1) + "-" + todayDate.getDate()).getTime() / 1000
+      );
+      let response;
+      try {
+        if (timestamp_trip_date < timestamp_today) {
+          let next_date = new Date(date);
+          next_date.setDate(next_date.getDate() + 1);
+          response = await fetch(`${weatherhistoryURL}${lat}&lon=${lng}&start_date=${date}&end_date=${next_date}&key=${weatherbitAPI}`);
+        } else {
+          response = await fetch(`${weatherforecastURL}${lat}&lon=${lng}&key=${weatherbitAPI}`);
+        }
+        if (!response.ok) {
+          throw new Error(`Weatherbit API request failed: ${response.status}`);
+        }
+        const weatherData = await response.json();
+        if (!weatherData || !weatherData.data || !weatherData.data[0]) {
+          throw new Error("Weather data is missing or invalid.");
+        }
+        return weatherData;
+      }catch (error) {
+        console.error("Error fetching weather data:", error);
+        return null;
+      }
     }
-    try {
-        return await response.json();
-    } catch (e) {
-        console.log('error', e)
-    }
-}
 //post data to the server
 async function postData(details) {
     const response = await fetch('http://localhost:3001/postData', {
@@ -106,7 +122,7 @@ async function postData(details) {
     try {
         return await response.json();
     } catch (e) {
-        console.log('error', e);
+        console.error('error posting data', e);
     }
 }
 
@@ -140,12 +156,12 @@ function updateUI(data) {
 
 //error message when user entered numbers in destination field
 dest.addEventListener('change', ()=>{
-     if(/\d/.test(dest.value)){
-        error.classList.remove('hide') 
-        error.innerHTML = `* Don't enter numbers in destination feild`
+     if (/[^a-zA-Z\s]/.test(dest.value)) {
+       error.classList.remove("hide");
+       error.innerHTML = `* Please enter a valid city name`;
      } else {
-        error.classList.add('hide')
-    }
+       error.classList.add("hide");
+     }
 })
 //main function... display errors or display the result
 document.getElementById("submit").addEventListener('click', (e)=>{
@@ -161,7 +177,7 @@ document.getElementById("submit").addEventListener('click', (e)=>{
 })
 
 //clone empty trip card to allow using multiple destinations
-let i = 0, y=0, x=0
+let i = 0, y = 0, x = 0
 function Clone() {
 let main = document.querySelector('main'),
 sec = document.querySelector(".allCards"),
@@ -187,7 +203,6 @@ let b = document.querySelector(`#delete${x}`)
      
 clone.scrollIntoView({behavior: "smooth"}) 
 }
-
 //remove all cards
 function clearAll() {
     let all =  document.querySelector(`.allCards`)
@@ -202,16 +217,8 @@ document.querySelector(`#r_all`).addEventListener('click', (event) => {
 //cahnge date formate to easy checking
 function changeDateFormat(date) {
     let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    let formatedDate = "";
-    month = month < 10 ? month = "0" + month : month;
-    day = day < 10 ? day = "0" + day : day;
-    formatedDate += year;
-    formatedDate += "-";
-    formatedDate += month;
-    formatedDate += "-";
-    formatedDate += day;
-    return formatedDate
+    let month = (date.getMonth() + 1).toString().padStart(2, "0");
+    let day = date.getDate().toString().padStart(2, "0");
+    return `${year}-${month}-${day}`;
 }
 
