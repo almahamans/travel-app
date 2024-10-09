@@ -56,7 +56,7 @@ function handleSubmit(e){
 }
 // Function to get Geo stats
 const geoNamesURL = 'http://api.geonames.org/searchJSON?q='
-const username = 'meem'
+const username = process.env.geo_username
 async function getGeoDetails(city){
     try {
         const response = await fetch(`${geoNamesURL}${city}&maxRows=10&username=${username}`);
@@ -67,7 +67,7 @@ async function getGeoDetails(city){
 }
 //Function to get pic data
 const pixabayURL = 'https://pixabay.com/api/?key=';
-const pixabayAPI = '31434193-491972de18a02049fd2bb2d83';
+const pixabayAPI = process.env.pixar_key;
 async function getImage(toCity) {
     try {
         const response = await fetch(pixabayURL + pixabayAPI + "&q=" + toCity + " city&image_type=photo");
@@ -79,7 +79,7 @@ async function getImage(toCity) {
 //Function to get weather data
 const weatherforecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?lat=';
 const weatherhistoryURL = 'https://api.weatherbit.io/v2.0/history/daily?lat=';
-const weatherbitAPI = '43e5b5e4fc4d44418a78aaeaf0f0ac59';
+const weatherbitAPI = process.env.weather_key;
     async function getWeatherData(lat, lng, date) {
       const timestamp_trip_date = Math.floor(new Date(date).getTime() / 1000);
       const todayDate = new Date();
